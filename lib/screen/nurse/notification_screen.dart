@@ -94,7 +94,13 @@ class NotificationScreen extends StatelessWidget {
                           backgroundColor: Colors.orange,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                         ),
-                        child: const Text('Assign to Case'),
+                        child: const Text(
+                          'Assign to Case',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -111,7 +117,13 @@ class NotificationScreen extends StatelessWidget {
                               Colors.blue, // Change color as you like
                           padding: const EdgeInsets.symmetric(vertical: 14),
                         ),
-                        child: const Text('Refer Case'),
+                        child: const Text(
+                          'Refer Case',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),

@@ -194,10 +194,12 @@
 //     ),
 //   );
 // }
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/nurse/utils/custome_appbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'nurse_controller.dart';
+import 'package:golden_hour_app/screen/nurse/utils/custome_appbar.dart'; // Ensure this import is correct
 
 class ReferPatientScreen extends StatefulWidget {
   const ReferPatientScreen({super.key});
@@ -214,10 +216,10 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
     'City Care Hospital',
   ];
 
-  final List<String> doctors = [
-    'Dr. Rekha Gupta',
-    'Dr. Anand Patel',
-    'Dr. Alok Chatterjee',
+  final List<Map<String, String>> doctors = [
+    {'name': 'Dr. Rekha Gupta', 'phone': '9812345678'},
+    {'name': 'Dr. Anand Patel', 'phone': '9823456789'},
+    {'name': 'Dr. Alok Chatterjee', 'phone': '9834567890'},
   ];
 
   String selectedDoctor = 'Dr. Anand Patel';
@@ -253,10 +255,7 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
           ],
         ),
         actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: const Text('Cancel'),
-          ),
+          TextButton(onPressed: () => Get.back(), child: const Text('Cancel')),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
             onPressed: () {
@@ -269,13 +268,21 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
               Get.back(); // Go back to previous screen
 
               Get.snackbar(
+                backgroundColor: Colors.orange.shade300,
+
                 'Patient Referred Successfully',
                 'To: $selectedDoctor\nAt: $selectedHospital',
                 snackPosition: SnackPosition.BOTTOM,
                 duration: const Duration(seconds: 3),
               );
             },
-            child: const Text('Confirm Referral'),
+            child: const Text(
+              'Confirm Referral',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),
@@ -285,13 +292,7 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: OrangeGradientAppBar(
-  title: 'Doctor App',
-//   leading: IconButton(
-//     icon: const Icon(Icons.menu),
-//  onPressed: () => Get.back(),
-//   ),
-),
+      appBar: OrangeGradientAppBar(title: 'Doctor Refer Patient'),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
@@ -326,18 +327,39 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
 
             const SizedBox(height: 16),
 
-            // Radio Buttons: Doctor
+            // List: Doctors with Phone Call Functionality
             const Text("Head Doctor's"),
             const SizedBox(height: 4),
             Column(
               children: doctors.map((doctor) {
-                return RadioListTile<String>(
-                  title: Text(doctor),
-                  value: doctor,
-                  groupValue: selectedDoctor,
-                  onChanged: (value) {
+                final doctorName = doctor['name']!;
+                final doctorPhone = doctor['phone']!;
+                return ListTile(
+                  leading: CircleAvatar(
+                    child: Text(doctorName.split(' ')[1][0]),
+                  ),
+                  title: Text(doctorName),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.call, color: Colors.green),
+                        onPressed: () async {
+                          final Uri uri = Uri(scheme: 'tel', path: doctorPhone);
+                          if (await canLaunchUrl(uri)) {
+                            await launchUrl(uri);
+                          } else {
+                            Get.snackbar('Error', 'Cannot launch dialer');
+                          }
+                        },
+                      ),
+                      if (selectedDoctor == doctorName)
+                        const Icon(Icons.check_circle, color: Colors.black),
+                    ],
+                  ),
+                  onTap: () {
                     setState(() {
-                      selectedDoctor = value!;
+                      selectedDoctor = doctorName;
                     });
                   },
                 );
@@ -365,7 +387,13 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
                 onPressed: _showReferralConfirmation,
-                child: const Text('Refer Patient'),
+                child: const Text(
+                  'Refer Patient',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
@@ -430,7 +458,10 @@ Widget infoRow(String label, String value) {
       children: [
         SizedBox(
           width: 80,
-          child: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(
+            label,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
         const SizedBox(width: 12),
         Text(value),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:golden_hour_app/screen/nurse/end_trip_screen.dart';
 
 class OrangeGradientAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -78,7 +81,9 @@ class OrangeGradientAppBar extends StatelessWidget
               label: Text(notificationCount.toString()),
               child: const Icon(Icons.notifications_outlined),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(EndTripScreen());
+            },
           ),
         ...?actions,
         const SizedBox(width: 8),
