@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/nurse/nurse_form_screen.dart';
+import 'package:golden_hour_app/screen/attender/attender_form_screen.dart';
 
 class OTPController extends GetxController {
   var phoneNumber = ''.obs;
   var otpCode = ''.obs;
+  
 
   void setPhoneNumber(String number) {
     phoneNumber.value = number;

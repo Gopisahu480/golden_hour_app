@@ -107,8 +107,8 @@
 // views/end_trip_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/nurse/utils/custome_appbar.dart';
-import 'package:golden_hour_app/screen/nurse/nurse_form_screen.dart'; // Import your NurseFormScreen
+import 'package:golden_hour_app/screen/attender/attender_form_screen.dart';
+import 'package:golden_hour_app/utils/custome_appbar.dart'; // Import your NurseFormScreen
 
 class EndTripScreen extends StatelessWidget {
   EndTripScreen({super.key});
@@ -185,7 +185,7 @@ class EndTripScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: OrangeGradientAppBar(title: 'End Trip'),
+      appBar: OrangeGradientAppBar(title: 'End Trip',showBackButton: false,),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(

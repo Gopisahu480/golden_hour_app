@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:golden_hour_app/screen/nurse/nurse_form_screen.dart';
+import 'package:golden_hour_app/screen/attender/attender_form_screen.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({super.key});

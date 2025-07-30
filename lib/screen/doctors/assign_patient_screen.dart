@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/nurse/utils/custome_appbar.dart';
+import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'nurse_controller.dart';
 
@@ -276,7 +276,9 @@ class AssignPatientScreen extends StatelessWidget {
     return Scaffold(
       appBar: OrangeGradientAppBar(
         title: 'Assign Patient',
-        showBackButton: false,
+        // showBackButton: false,
+        // showDrawerButton: false,
+        // centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),

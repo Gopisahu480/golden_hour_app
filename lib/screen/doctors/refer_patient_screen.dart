@@ -197,9 +197,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'nurse_controller.dart';
-import 'package:golden_hour_app/screen/nurse/utils/custome_appbar.dart'; // Ensure this import is correct
 
 class ReferPatientScreen extends StatefulWidget {
   const ReferPatientScreen({super.key});
@@ -292,7 +292,7 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: OrangeGradientAppBar(title: 'Doctor Refer Patient'),
+      appBar: OrangeGradientAppBar(title: 'Doctor Refer Patient',showBackButton: false,),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
@@ -328,7 +328,7 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
             const SizedBox(height: 16),
 
             // List: Doctors with Phone Call Functionality
-            const Text("Head Doctor's"),
+            const Text("Doctor's"),
             const SizedBox(height: 4),
             Column(
               children: doctors.map((doctor) {
