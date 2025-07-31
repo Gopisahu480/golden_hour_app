@@ -33,8 +33,9 @@
 //     }
 //   }
 // }
-import 'package:get/get.dart';
 
+
+import 'package:get/get.dart';
 class NurseController extends GetxController {
   var name = ''.obs;
   var age = ''.obs;
@@ -50,7 +51,7 @@ class NurseController extends GetxController {
   final referredPatientGender = ''.obs;
   final referredConditionSummary = ''.obs;
   var selectedDoctor = ''.obs;
-
+  var selectedDoctorPhone = ''.obs;
   final List<String> hospitals = [
     'Raipur General Hospital',
     'Apollo Hospital',

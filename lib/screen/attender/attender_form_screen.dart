@@ -885,7 +885,7 @@ import 'package:golden_hour_app/screen/doctors/notification_screen.dart';
 import 'package:golden_hour_app/utils/body_parts_overlay.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:golden_hour_app/utils/custome_drawer.dart';
-import '../doctors/nurse_controller.dart';
+import 'controller/attender_controller.dart';
 
 class NurseFormScreen extends StatelessWidget {
   const NurseFormScreen({super.key});
@@ -1283,7 +1283,7 @@ class NurseFormScreen extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 32),
-
+                  //Submit Button
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -1309,11 +1309,23 @@ class NurseFormScreen extends StatelessWidget {
                                 (part) => part['displayName'] as String,
                               )
                               .toList();
+                          final Map<String, dynamic> details = {
+                            'name': controller.name.value,
+                            'gender': controller.gender.value,
+                            'age': controller.age.value,
+                            'bodyParts': selectedPartsDisplay.join(', '),
+                            'severity': controller.severity.value,
+                            'hospital': controller.selectedHospital.value,
+                          };
 
-                          controller.selectedBodyPartsDisplay.value =
-                              selectedPartsDisplay;
-
-                          Get.to(() => const NotificationScreen());
+                          _showConfirmationPopup(context, details, () {
+                            controller.selectedBodyPartsDisplay.value =
+                                selectedPartsDisplay;
+                            Get.to(() => const NotificationScreen());
+                          });
+                          // controller.selectedBodyPartsDisplay.value =
+                          //     selectedPartsDisplay;
+                          // Get.to(() => const NotificationScreen());
                         }
                       },
                       child: const Text(
@@ -1333,4 +1345,54 @@ class NurseFormScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showConfirmationPopup(
+  BuildContext context,
+  Map<String, dynamic> details,
+  VoidCallback onConfirm,
+) {
+  showDialog(
+    context: context,
+    builder: (BuildContext dialogContext) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text('Confirm Submission'),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Name: ${details['name'] ?? '—'}'),
+              Text('Gender: ${details['gender']}'),
+              Text('Age: ${details['age']}'),
+              Text('Body Part(s): ${details['bodyParts']}'),
+              Text('Severity: ${details['severity']}'),
+              Text('Hospital: ${details['hospital']}'),
+              SizedBox(height: 12),
+              Text(
+                'Do you want to submit?',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Cancel'),
+            onPressed: () => Navigator.of(dialogContext).pop(),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.orange.shade700,
+            ),
+            child: Text('Submit'),
+            onPressed: () {
+              Navigator.of(dialogContext).pop();
+              onConfirm();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

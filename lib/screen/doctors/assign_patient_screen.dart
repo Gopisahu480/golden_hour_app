@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:golden_hour_app/screen/doctors_profile/doctor_profile.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'nurse_controller.dart';
+import '../attender/controller/attender_controller.dart';
 
 // class AssignPatientScreen extends StatelessWidget {
 //   const AssignPatientScreen({super.key});
@@ -208,7 +209,7 @@ class AssignPatientScreen extends StatelessWidget {
       {'name': 'Dr. Mark Allen', 'phone': '8435010816'},
     ];
 
-    void _showAssignmentDialog(String doctorName) {
+    void _showAssignmentDialog(String doctorName, String doctorPhone) {
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -260,8 +261,16 @@ class AssignPatientScreen extends StatelessWidget {
                       foregroundColor: Colors.white,
                     ),
                     onPressed: () {
-                      Navigator.of(context).pop();
-                      Get.back(); // Close the AssignPatientScreen
+                      controller.selectedDoctor.value = doctorName;
+                      controller
+                          .update(); // Updates the UI to show selected doctor
+                      Get.to(
+                        () => DoctorProfileScreen(
+                          doctorName: doctorName, doctorPhone: doctorPhone,
+                          // doctorPhone: doctorPhone,
+                        ),
+                      ); // Navigates to DoctorProfileScreen
+                    
                     },
                     child: const Text("Ok"),
                   ),
@@ -348,6 +357,18 @@ class AssignPatientScreen extends StatelessWidget {
                       controller.selectedDoctor.value = doctorName;
                       controller.update();
                     },
+                  //   onTap: () {
+                  //     controller.selectedDoctor.value = doctorName;
+                  //     controller
+                  //         .update(); // Updates the UI to show selected doctor
+                  //     Get.to(
+                  //       () => DoctorProfileScreen(
+                  //         doctorName: doctorName,
+                  //         doctorPhone: doctorPhone,
+                  //       ),
+                  //     ); // Navigates to DoctorProfileScreen
+                  //   },
+                  // 
                   );
                 }),
               ),
@@ -361,11 +382,12 @@ class AssignPatientScreen extends StatelessWidget {
                   foregroundColor: Colors.white,
                 ),
                 onPressed: () {
-                  if (controller.selectedDoctor.value.isEmpty) {
+                  if (controller.selectedDoctor.value.isEmpty &&
+                      controller.selectedDoctorPhone.value.isEmpty) {
                     Get.snackbar('Error', 'Please select a doctor first');
                     return;
                   }
-                  _showAssignmentDialog(controller.selectedDoctor.value);
+                  _showAssignmentDialog(controller.selectedDoctor.value,controller.selectedDoctorPhone.value);
                 },
                 child: const Text('Assign'),
               ),

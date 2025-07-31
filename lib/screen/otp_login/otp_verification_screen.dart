@@ -45,9 +45,11 @@
 //     );
 //   }
 // }
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/screen/otp_login/otp_controller.dart';
+import 'package:golden_hour_app/screen/otp_login/password_screen.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
   const OTPVerificationScreen({super.key});
@@ -65,8 +67,10 @@ class OTPVerificationScreen extends StatelessWidget {
           children: [
             const Icon(Icons.lock, size: 80, color: Colors.orange),
             const SizedBox(height: 20),
-            const Text("Enter Verification Code", 
-                style: TextStyle(fontSize: 18)),
+            const Text(
+              "Enter Verification Code",
+              style: TextStyle(fontSize: 18),
+            ),
             const SizedBox(height: 20),
             TextField(
               controller: otpController,
@@ -76,7 +80,18 @@ class OTPVerificationScreen extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
+            TextButton(
+              onPressed: () {
+                Get.to(() => const PasswordEntryScreen());
+              },
+
+              child: const Text(
+                "Didn't receive the OTP? Click here to enter your password.",
+                style: TextStyle(fontSize: 12),
+              ),
+            ),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 controller.verifyOtp(otpController.text, context);

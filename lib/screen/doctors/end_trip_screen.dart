@@ -185,7 +185,7 @@ class EndTripScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: OrangeGradientAppBar(title: 'End Trip',showBackButton: false,),
+      appBar: OrangeGradientAppBar(title: 'End Trip', showBackButton: false),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -194,12 +194,18 @@ class EndTripScreen extends StatelessWidget {
             // Top illustration
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(Icons.local_hospital, size: 48),
                 SizedBox(width: 12),
                 Icon(Icons.arrow_forward, size: 32),
                 SizedBox(width: 12),
-                Icon(Icons.medical_services_outlined, size: 48),
+                Image.asset(
+                  'assets/Ambulance.png',
+                  width: 88,
+                  height: 88,
+                  fit: BoxFit.cover,
+                  color: Colors.black,
+                ),
               ],
             ),
             const SizedBox(height: 32),

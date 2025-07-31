@@ -199,7 +199,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'nurse_controller.dart';
+import '../attender/controller/attender_controller.dart';
 
 class ReferPatientScreen extends StatefulWidget {
   const ReferPatientScreen({super.key});
@@ -224,9 +224,7 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
 
   String selectedDoctor = 'Dr. Anand Patel';
   String selectedHospital = 'Sunshine Hospital';
-  final TextEditingController reasonController = TextEditingController(
-    text: 'Confirm availability',
-  );
+  final TextEditingController reasonController = TextEditingController();
 
   void _showReferralConfirmation() {
     Get.dialog(
@@ -244,6 +242,7 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
             infoRow('Age', controller.age.value),
             infoRow('Gender', controller.gender.value),
             infoRow('Injury', controller.severity.value),
+            infoRow('Reason', reasonController.text),
             const SizedBox(height: 16),
             const Text(
               'Referral Details:',
@@ -251,7 +250,6 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
             ),
             infoRow('Hospital', selectedHospital),
             infoRow('Doctor', selectedDoctor),
-            infoRow('Reason', reasonController.text),
           ],
         ),
         actions: [
@@ -292,25 +290,89 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: OrangeGradientAppBar(title: 'Doctor Refer Patient',showBackButton: false,),
+      appBar: OrangeGradientAppBar(
+        title: 'Doctor Refer Patient',
+        showBackButton: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            const Text(
-              'You may refer this patient to another hospital',
-              style: TextStyle(fontSize: 16),
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 12.0,
+              ),
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.orange.shade50,
+                borderRadius: BorderRadius.circular(12.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.orange.shade200.withOpacity(0.5),
+                    blurRadius: 6,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+                border: Border.all(color: Colors.orange.shade200),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.local_hospital_outlined,
+                        color: Colors.orange,
+                        size: 28,
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        'Referral Option',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange.shade900,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 37.0),
+                    child: Text(
+                      'You may refer this patient to another hospital',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.orange.shade800,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 24),
             patientDetailsCard(controller),
-            const Text(
-              'Refer Patient',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+
+            // Reason Input
+            const Text('Reason', style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 4),
+            TextField(
+              controller: reasonController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Reason for referral',
+              ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 15),
 
             // Dropdown: Hospital
-            const Text('Hospital'),
+            const Text(
+              'Hospital',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 4),
             DropdownButtonFormField<String>(
               value: selectedHospital,
@@ -364,19 +426,6 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
                   },
                 );
               }).toList(),
-            ),
-
-            const SizedBox(height: 16),
-
-            // Reason Input
-            const Text('Reason'),
-            const SizedBox(height: 4),
-            TextField(
-              controller: reasonController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Reason for referral',
-              ),
             ),
 
             const SizedBox(height: 24),

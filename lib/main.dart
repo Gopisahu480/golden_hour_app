@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:golden_hour_app/utils/splash_screen.dart';
 import 'package:golden_hour_app/screen/otp_login/mobile_number_screen.dart';
 import 'package:golden_hour_app/screen/otp_login/otp_verification_screen.dart';
-import 'package:golden_hour_app/screen/otp_login/success_screen.dart';
+import 'package:golden_hour_app/screen/otp_login/password_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       initialRoute: '/',
+      
       getPages: [
         GetPage(name: '/', page: () => const SplashScreen()), // Changed to SplashScreen
         GetPage(name: '/', page: () => const MobileNumberScreen()),
         GetPage(name: '/otp', page: () => const OTPVerificationScreen()),
-        GetPage(name: '/success', page: () => const SuccessScreen()),
       ],
     );
   }
