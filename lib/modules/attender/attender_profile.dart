@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:golden_hour_app/screen/otp_login/mobile_number_screen.dart';
+import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:get/get.dart';
 
@@ -106,94 +106,93 @@ class EMTProfileScreen extends StatelessWidget {
                   "Availability",
                   "24/7 On Call",
                 ),
-                _buildInfoRow(Icons.email, "Email", "rahul.verma@aiims.edu"),
+                _buildInfoRow(Icons.email, "Email", "gk@aiims.com"),
               ],
             ),
 
-            const SizedBox(height: 20),
+            // const SizedBox(height: 20),
 
-            // Skills & Certifications
-            _buildSectionCard(
-              title: "Skills & Certifications",
-              icon: Icons.medical_services,
-              children: [
-                _buildSkillChip("CPR Certified"),
-                _buildSkillChip("Advanced Life Support"),
-                _buildSkillChip("Trauma Care"),
-                _buildSkillChip("Emergency Response"),
-                _buildSkillChip("Patient Assessment"),
-                _buildSkillChip("Medical Equipment Operation"),
-              ],
-            ),
+            // // Skills & Certifications
+            // _buildSectionCard(
+            //   title: "Skills & Certifications",
+            //   icon: Icons.medical_services,
+            //   children: [
+            //     _buildSkillChip("CPR Certified"),
+            //     _buildSkillChip("Advanced Life Support"),
+            //     _buildSkillChip("Trauma Care"),
+            //     _buildSkillChip("Emergency Response"),
+            //     _buildSkillChip("Patient Assessment"),
+            //     _buildSkillChip("Medical Equipment Operation"),
+            //   ],
+            // ),
 
-            const SizedBox(height: 20),
+            // const SizedBox(height: 20),
 
-            // Experience
-            _buildSectionCard(
-              title: "Professional Experience",
-              icon: Icons.work_history,
-              children: [
-                _buildExperienceItem(
-                  "5+ Years Field Experience",
-                  "Specialized in trauma and accident cases with extensive hands-on experience in emergency medical situations.",
-                ),
-                _buildExperienceItem(
-                  "800+ Emergency Cases Handled",
-                  "Successfully managed emergency cases across both rural and urban areas, demonstrating adaptability and expertise.",
-                ),
-                _buildExperienceItem(
-                  "Team Leadership",
-                  "Led emergency response teams and coordinated with hospitals for patient transfers and critical care.",
-                ),
-              ],
-            ),
+            // // Experience
+            // _buildSectionCard(
+            //   title: "Professional Experience",
+            //   icon: Icons.work_history,
+            //   children: [
+            //     _buildExperienceItem(
+            //       "5+ Years Field Experience",
+            //       "Specialized in trauma and accident cases with extensive hands-on experience in emergency medical situations.",
+            //     ),
+            //     _buildExperienceItem(
+            //       "800+ Emergency Cases Handled",
+            //       "Successfully managed emergency cases across both rural and urban areas, demonstrating adaptability and expertise.",
+            //     ),
+            //     _buildExperienceItem(
+            //       "Team Leadership",
+            //       "Led emergency response teams and coordinated with hospitals for patient transfers and critical care.",
+            //     ),
+            //   ],
+            // ),
 
-            const SizedBox(height: 20),
+            // const SizedBox(height: 20),
 
-            // Statistics
-            _buildSectionCard(
-              title: "Performance Statistics",
-              icon: Icons.analytics,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildStatCard(
-                        "Response Time",
-                        "< 8 min",
-                        Colors.green,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: _buildStatCard(
-                        "Success Rate",
-                        "98.5%",
-                        Colors.blue,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildStatCard(
-                        "Cases This Month",
-                        "45",
-                        Colors.orange,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: _buildStatCard("Rating", "4.9/5", Colors.purple),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 20),
+            // // Statistics
+            // _buildSectionCard(
+            //   title: "Performance Statistics",
+            //   icon: Icons.analytics,
+            //   children: [
+            //     Row(
+            //       children: [
+            //         Expanded(
+            //           child: _buildStatCard(
+            //             "Response Time",
+            //             "< 8 min",
+            //             Colors.green,
+            //           ),
+            //         ),
+            //         const SizedBox(width: 12),
+            //         Expanded(
+            //           child: _buildStatCard(
+            //             "Success Rate",
+            //             "98.5%",
+            //             Colors.blue,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     const SizedBox(height: 12),
+            //     Row(
+            //       children: [
+            //         Expanded(
+            //           child: _buildStatCard(
+            //             "Cases This Month",
+            //             "45",
+            //             Colors.orange,
+            //           ),
+            //         ),
+            //         const SizedBox(width: 12),
+            //         Expanded(
+            //           child: _buildStatCard("Rating", "4.9/5", Colors.purple),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
+            const SizedBox(height: 60),
 
             // Logout Button
             Container(

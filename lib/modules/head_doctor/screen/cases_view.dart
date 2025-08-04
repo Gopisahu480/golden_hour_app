@@ -1,8 +1,8 @@
 // lib/views/cases_view.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/head_doctor/controller/head_doctor_controller.dart';
-import 'package:golden_hour_app/screen/head_doctor/models/doctor_model.dart';
+import 'package:golden_hour_app/modules/head_doctor/controller/head_doctor_controller.dart';
+import 'package:golden_hour_app/modules/head_doctor/models/doctor_model.dart';
 
 class CasesView extends StatelessWidget {
   CasesView({super.key});

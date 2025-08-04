@@ -107,7 +107,7 @@
 // views/end_trip_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/attender/attender_form_screen.dart';
+import 'package:golden_hour_app/modules/attender/attender_form_screen.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart'; // Import your NurseFormScreen
 
 class EndTripScreen extends StatelessWidget {

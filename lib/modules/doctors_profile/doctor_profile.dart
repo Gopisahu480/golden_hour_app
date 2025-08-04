@@ -83,8 +83,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/doctors_profile/assigned_cases.dart';
-import 'package:golden_hour_app/screen/otp_login/mobile_number_screen.dart';
+import 'package:golden_hour_app/modules/doctors_profile/assigned_cases.dart';
+import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
@@ -131,7 +131,7 @@ class DoctorProfileScreen extends StatelessWidget {
                 ],
               ),
               accountName: Text(
-                 doctorName,
+                doctorName,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -299,71 +299,70 @@ class DoctorProfileScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Experience
-            _buildSectionCard(
-              title: "Professional Experience",
-              icon: Icons.work_history,
-              children: [
-                _buildExperienceItem(
-                  "10+ Years of Practice",
-                  "Experienced in diagnosing and treating a wide range of acute and chronic illnesses in adult patients.",
-                ),
-                _buildExperienceItem(
-                  "5000+ Patients Treated",
-                  "Managed diverse cases, from routine check-ups to critical care, with a focus on patient outcomes.",
-                ),
-                _buildExperienceItem(
-                  "Hospital Leadership",
-                  "Served as head of the General Medicine department, coordinating multidisciplinary teams.",
-                ),
-              ],
-            ),
+            // // Experience
+            // _buildSectionCard(
+            //   title: "Professional Experience",
+            //   icon: Icons.work_history,
+            //   children: [
+            //     _buildExperienceItem(
+            //       "10+ Years of Practice",
+            //       "Experienced in diagnosing and treating a wide range of acute and chronic illnesses in adult patients.",
+            //     ),
+            //     _buildExperienceItem(
+            //       "5000+ Patients Treated",
+            //       "Managed diverse cases, from routine check-ups to critical care, with a focus on patient outcomes.",
+            //     ),
+            //     _buildExperienceItem(
+            //       "Hospital Leadership",
+            //       "Served as head of the General Medicine department, coordinating multidisciplinary teams.",
+            //     ),
+            //   ],
+            // ),
 
-            const SizedBox(height: 20),
+            // const SizedBox(height: 20),
 
-            // Statistics
-            _buildSectionCard(
-              title: "Performance Statistics",
-              icon: Icons.analytics,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildStatCard(
-                        "Avg. Consultation Time",
-                        "15 min",
-                        Colors.green,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: _buildStatCard(
-                        "Patient Satisfaction",
-                        "95%",
-                        Colors.blue,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildStatCard(
-                        "Cases This Month",
-                        "120",
-                        Colors.orange,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: _buildStatCard("Rating", "4.8/5", Colors.purple),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-
+            // // Statistics
+            // _buildSectionCard(
+            //   title: "Performance Statistics",
+            //   icon: Icons.analytics,
+            //   children: [
+            //     Row(
+            //       children: [
+            //         Expanded(
+            //           child: _buildStatCard(
+            //             "Avg. Consultation Time",
+            //             "15 min",
+            //             Colors.green,
+            //           ),
+            //         ),
+            //         const SizedBox(width: 12),
+            //         Expanded(
+            //           child: _buildStatCard(
+            //             "Patient Satisfaction",
+            //             "95%",
+            //             Colors.blue,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     const SizedBox(height: 12),
+            //     Row(
+            //       children: [
+            //         Expanded(
+            //           child: _buildStatCard(
+            //             "Cases This Month",
+            //             "120",
+            //             Colors.orange,
+            //           ),
+            //         ),
+            //         const SizedBox(width: 12),
+            //         Expanded(
+            //           child: _buildStatCard("Rating", "4.8/5", Colors.purple),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
             const SizedBox(height: 20),
 
             // Assigned Cases Button

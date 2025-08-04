@@ -48,8 +48,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/otp_login/otp_controller.dart';
-import 'package:golden_hour_app/screen/otp_login/password_screen.dart';
+import 'package:golden_hour_app/modules/otp_login/otp_controller.dart';
+import 'package:golden_hour_app/modules/otp_login/password_screen.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
   const OTPVerificationScreen({super.key});

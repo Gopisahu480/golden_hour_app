@@ -1,7 +1,7 @@
 // lib/views/doctors_list_view.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/head_doctor/controller/head_doctor_controller.dart';
+import 'package:golden_hour_app/modules/head_doctor/controller/head_doctor_controller.dart';
 
 class DoctorsListView extends StatelessWidget {
   DoctorsListView({super.key});

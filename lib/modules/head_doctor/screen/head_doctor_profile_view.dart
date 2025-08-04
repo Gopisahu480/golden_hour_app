@@ -1,8 +1,8 @@
 // lib/views/doctor_profile_view.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/head_doctor/controller/head_doctor_controller.dart';
-import 'package:golden_hour_app/screen/otp_login/mobile_number_screen.dart';
+import 'package:golden_hour_app/modules/head_doctor/controller/head_doctor_controller.dart';
+import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart';
 
 class HeadDoctorProfileView extends StatelessWidget {
   HeadDoctorProfileView({super.key});

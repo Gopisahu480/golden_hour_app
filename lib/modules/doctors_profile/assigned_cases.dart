@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/attender/controller/attender_controller.dart';
-import 'package:golden_hour_app/screen/doctors_profile/patient_details.dart';
+import 'package:golden_hour_app/modules/attender/controller/attender_controller.dart';
+import 'package:golden_hour_app/modules/doctors_profile/patient_details.dart';
 
 class AssignedCasesScreen extends StatelessWidget {
   final String doctorName;
@@ -52,11 +52,11 @@ class AssignedCasesScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Age: ${patient['age']} • ${patient['gender']}'),
-                    Text('Condition: ${patient['condition']}'),
+                    Text('Injury: ${patient['condition']}'),
                     Text(
                       'Criticality: ${patient['criticality']}',
                       style: TextStyle(
-                        color: patient['criticality'] == 'High' 
+                        color: patient['criticality'] == 'Severe' 
                             ? Colors.red 
                             : Colors.orange,
                       ),

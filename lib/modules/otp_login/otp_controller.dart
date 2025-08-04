@@ -5,7 +5,6 @@
 // class OTPController extends GetxController {
 //   var phoneNumber = ''.obs;
 //   var otpCode = ''.obs;
-  
 
 //   void setPhoneNumber(String number) {
 //     phoneNumber.value = number;
@@ -17,7 +16,7 @@
 //       showSuccessDialog(context);
 //     } else {
 //       Get.snackbar(
-//         "Error", 
+//         "Error",
 //         "Invalid OTP",
 //         snackPosition: SnackPosition.BOTTOM,
 //         backgroundColor: Colors.red,
@@ -65,8 +64,6 @@
 //     );
 //   }
 // }
-
-
 
 //Login succesfully
 // import 'package:flutter/material.dart';
@@ -194,13 +191,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/attender/attender_form_screen.dart';
-import 'package:golden_hour_app/screen/doctors/assign_patient_screen.dart';
-import 'package:golden_hour_app/screen/attender/controller/attender_controller.dart';
-import 'package:golden_hour_app/screen/doctors_profile/doctor_profile.dart';
+import 'package:golden_hour_app/modules/attender/attender_form_screen.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/assign_patient_screen.dart';
+import 'package:golden_hour_app/modules/attender/controller/attender_controller.dart';
+import 'package:golden_hour_app/modules/doctors_profile/doctor_profile.dart';
 import 'dart:math';
-import 'package:golden_hour_app/screen/head_doctor/screen/head_doctor_dashboard.dart';
-import 'package:golden_hour_app/screen/head_doctor/services/doctor_service.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/head_doctor_dashboard.dart';
+import 'package:golden_hour_app/modules/head_doctor/services/doctor_service.dart';
 
 class OTPController extends GetxController {
   final RxString phoneNumber = ''.obs;
@@ -232,8 +229,9 @@ class OTPController extends GetxController {
     try {
       isLoading(true);
       errorMessage.value = '';
-      
-      if (phoneNumber.length != 10 || !RegExp(r'^[0-9]+$').hasMatch(phoneNumber)) {
+
+      if (phoneNumber.length != 10 ||
+          !RegExp(r'^[0-9]+$').hasMatch(phoneNumber)) {
         errorMessage.value = 'Please enter a valid 10-digit phone number';
         return;
       }
@@ -245,13 +243,15 @@ class OTPController extends GetxController {
 
       generatedOtp.value = generateOtp();
       isOtpSent.value = true;
-      
+
       // Simulate network delay
       await Future.delayed(const Duration(seconds: 1));
-      
+
       // In production, use an SMS service like Twilio
-      debugPrint('Simulated OTP sent to +91$phoneNumber: ${generatedOtp.value}');
-      
+      debugPrint(
+        'Simulated OTP sent to +91$phoneNumber: ${generatedOtp.value}',
+      );
+
       Get.snackbar(
         'OTP Sent',
         'OTP: ${generatedOtp.value} (Check console for demo)',
@@ -268,11 +268,11 @@ class OTPController extends GetxController {
     try {
       isLoading(true);
       otpCode.value = otp;
-      
+
       if (otp != generatedOtp.value) {
         throw Exception('Invalid OTP');
       }
-      
+
       await navigateToUserScreen(context);
     } catch (e) {
       Get.snackbar(
@@ -290,11 +290,11 @@ class OTPController extends GetxController {
   Future<void> verifyPassword(String password, BuildContext context) async {
     try {
       isLoading(true);
-      
+
       if (password != '1234') {
         throw Exception('Invalid Password');
       }
-      
+
       await navigateToUserScreen(context);
     } catch (e) {
       Get.snackbar(
@@ -311,18 +311,18 @@ class OTPController extends GetxController {
 
   Future<void> navigateToUserScreen(BuildContext context) async {
     final role = users[phoneNumber.value];
-    
+
     if (role == null) {
       throw Exception('User role not found');
     }
-    
-    Get.snackbar(
-      'Success',
-      'Login Successful!',
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.green,
-      colorText: Colors.white,
-    );
+
+    // Get.snackbar(
+    //   'Success',
+    //   'Login Successful!',
+    //   snackPosition: SnackPosition.BOTTOM,
+    //   backgroundColor: Colors.green,
+    //   colorText: Colors.white,
+    // );
 
     switch (role) {
       case 'EMT':
@@ -331,15 +331,19 @@ class OTPController extends GetxController {
       case 'HeadDoctor':
         // Initialize DoctorService before navigating to dashboard
         await Get.putAsync(() => DoctorService().init());
-        Get.offAll(() =>  HeadDoctorDashboard());
+        Get.offAll(() => HeadDoctorDashboard());
         break;
       case 'Doctor':
-      Get.put(NurseController());
-      //   Get.to(() => const AssignPatientScreen());
-      Get.to(() => DoctorProfileScreen(
-          doctorName: 'Dr. Susan Clark', // Default doctor name (replace with dynamic lookup if needed)
-          doctorPhone: '9812345678', // Default doctor phone (replace with dynamic lookup if needed)
-        ));
+        Get.put(NurseController());
+        //   Get.to(() => const AssignPatientScreen());
+        Get.to(
+          () => DoctorProfileScreen(
+            doctorName:
+                'Dr. Susan Clark', // Default doctor name (replace with dynamic lookup if needed)
+            doctorPhone:
+                '9812345678', // Default doctor phone (replace with dynamic lookup if needed)
+          ),
+        );
         break;
     }
   }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,7 +47,7 @@ class PatientDetailsScreen extends StatelessWidget {
               'Criticality: $criticality',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: criticality == 'High' ? Colors.red : Colors.orange,
+                color: criticality == 'Severe' ? Colors.red : Colors.orange,
               ),
             ),
             Text('Condition: $condition'),
@@ -59,9 +58,7 @@ class PatientDetailsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             ListTile(
-              leading: CircleAvatar(
-                child: Text(doctorName.split(' ')[1][0]),
-              ),
+              leading: CircleAvatar(child: Text(doctorName.split(' ')[1][0])),
               title: Text(doctorName),
               subtitle: const Text('General Medicine'),
             ),

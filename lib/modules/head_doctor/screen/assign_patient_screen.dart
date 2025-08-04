@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/doctors_profile/doctor_profile.dart';
+import 'package:golden_hour_app/modules/doctors_profile/doctor_profile.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../attender/controller/attender_controller.dart';
+import '../../attender/controller/attender_controller.dart';
 
 // class AssignPatientScreen extends StatelessWidget {
 //   const AssignPatientScreen({super.key});
@@ -266,11 +266,11 @@ class AssignPatientScreen extends StatelessWidget {
                           .update(); // Updates the UI to show selected doctor
                       Get.to(
                         () => DoctorProfileScreen(
-                          doctorName: doctorName, doctorPhone: doctorPhone,
+                          doctorName: doctorName,
+                          doctorPhone: doctorPhone,
                           // doctorPhone: doctorPhone,
                         ),
                       ); // Navigates to DoctorProfileScreen
-                    
                     },
                     child: const Text("Ok"),
                   ),
@@ -294,31 +294,151 @@ class AssignPatientScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Patient Details',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              controller.name.value,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            Text('Age : ${controller.age.value} • ${controller.gender.value}'),
-            const SizedBox(height: 4),
-            Row(
-              children: const [
-                Text(
-                  'Criticality: ',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+            Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              margin: const EdgeInsets.all(8),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'PATIENT DETAILS',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.red.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Text(
+                            'SEVERE',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      controller.name.value,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueGrey,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.person_outline,
+                          size: 16,
+                          color: Colors.grey[600],
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${controller.age.value} years • ${controller.gender.value}',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Medical Summary',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.medical_services,
+                                size: 16,
+                                color: Colors.red,
+                              ),
+                              const SizedBox(width: 8),
+                              const Text(
+                                'Criticality: ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'Severe',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.healing,
+                                size: 16,
+                                color: Colors.orange,
+                              ),
+                              const SizedBox(width: 8),
+                              const Text(
+                                'Injury: ',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Flexible(
+                                child: Text(
+                                  'Chest, left hand, right leg',
+                                  style: TextStyle(color: Colors.grey[800]),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                Text('High', style: TextStyle(color: Colors.red)),
-              ],
+              ),
             ),
-            const Text('Injury: Chest'),
             const SizedBox(height: 20),
             const Text(
               'Assign Doctor',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
             GetBuilder<NurseController>(
@@ -357,18 +477,18 @@ class AssignPatientScreen extends StatelessWidget {
                       controller.selectedDoctor.value = doctorName;
                       controller.update();
                     },
-                  //   onTap: () {
-                  //     controller.selectedDoctor.value = doctorName;
-                  //     controller
-                  //         .update(); // Updates the UI to show selected doctor
-                  //     Get.to(
-                  //       () => DoctorProfileScreen(
-                  //         doctorName: doctorName,
-                  //         doctorPhone: doctorPhone,
-                  //       ),
-                  //     ); // Navigates to DoctorProfileScreen
-                  //   },
-                  // 
+                    //   onTap: () {
+                    //     controller.selectedDoctor.value = doctorName;
+                    //     controller
+                    //         .update(); // Updates the UI to show selected doctor
+                    //     Get.to(
+                    //       () => DoctorProfileScreen(
+                    //         doctorName: doctorName,
+                    //         doctorPhone: doctorPhone,
+                    //       ),
+                    //     ); // Navigates to DoctorProfileScreen
+                    //   },
+                    //
                   );
                 }),
               ),
@@ -387,7 +507,10 @@ class AssignPatientScreen extends StatelessWidget {
                     Get.snackbar('Error', 'Please select a doctor first');
                     return;
                   }
-                  _showAssignmentDialog(controller.selectedDoctor.value,controller.selectedDoctorPhone.value);
+                  _showAssignmentDialog(
+                    controller.selectedDoctor.value,
+                    controller.selectedDoctorPhone.value,
+                  );
                 },
                 child: const Text('Assign'),
               ),

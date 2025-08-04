@@ -881,7 +881,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/doctors/notification_screen.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/notification_screen.dart';
 import 'package:golden_hour_app/utils/body_parts_overlay.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:golden_hour_app/utils/custome_drawer.dart';
@@ -1033,7 +1033,7 @@ class NurseFormScreen extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'Name (optional)',
                       labelStyle: TextStyle(
-                        color: Colors.orange.shade700,
+                        color: Colors.grey.shade400,
                         fontSize: 16,
                       ),
                       filled: true,
@@ -1119,7 +1119,7 @@ class NurseFormScreen extends StatelessWidget {
                           decoration: InputDecoration(
                             labelText: 'Age*',
                             labelStyle: TextStyle(
-                              color: Colors.orange.shade700,
+                              color: Colors.grey.shade400,
                               fontSize: 16,
                             ),
                             filled: true,
@@ -1141,9 +1141,26 @@ class NurseFormScreen extends StatelessWidget {
                                 width: 2,
                               ),
                             ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Colors.red, // Error border color
+                                width: 1,
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(
+                                color: Colors.red, // Focused error border color
+                                width: 2,
+                              ),
+                            ),
                             contentPadding: const EdgeInsets.symmetric(
                               vertical: 12,
                               horizontal: 10,
+                            ),
+                            errorStyle: TextStyle(
+                              color: Colors.red, // Error text color
                             ),
                           ),
                           validator: (value) {
@@ -1228,7 +1245,7 @@ class NurseFormScreen extends StatelessWidget {
                                   ? FontWeight.bold
                                   : FontWeight.normal,
                               color: controller.severity.value == 'Severe'
-                                  ? const Color.fromARGB(255, 240, 29, 14)
+                                  ? const Color.fromARGB(255, 209, 17, 3)
                                   : null,
                             ),
                           ),
@@ -1236,7 +1253,7 @@ class NurseFormScreen extends StatelessWidget {
                           groupValue: controller.severity.value,
                           onChanged: (val) => controller.severity.value = val!,
                           activeColor: controller.severity.value == 'Severe'
-                              ? Colors.red
+                              ? const Color.fromARGB(255, 209, 17, 3)
                               : null,
                         ),
                       ],
@@ -1357,7 +1374,12 @@ void _showConfirmationPopup(
     builder: (BuildContext dialogContext) {
       return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Text('Confirm Submission'),
+        title: Column(
+          children: [
+            Icon(Icons.check_circle, color: Colors.orange, size: 80),
+            Text('Confirm Submission'),
+          ],
+        ),
         content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

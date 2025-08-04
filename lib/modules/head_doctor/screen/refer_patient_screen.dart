@@ -199,7 +199,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../attender/controller/attender_controller.dart';
+import '../../attender/controller/attender_controller.dart';
 
 class ReferPatientScreen extends StatefulWidget {
   const ReferPatientScreen({super.key});
@@ -217,9 +217,21 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
   ];
 
   final List<Map<String, String>> doctors = [
-    {'name': 'Dr. Rekha Gupta', 'phone': '9812345678'},
-    {'name': 'Dr. Anand Patel', 'phone': '9823456789'},
-    {'name': 'Dr. Alok Chatterjee', 'phone': '9834567890'},
+    {
+      'name': 'Dr. Rekha Gupta',
+      'phone': '9812345678',
+      'specialization': 'Dermatologist',
+    },
+    {
+      'name': 'Dr. Anand Patel',
+      'phone': '9823456789',
+      'specialization': 'Cardiologist',
+    },
+    {
+      'name': 'Dr. Alok Chatterjee',
+      'phone': '9834567890',
+      'specialization': 'Neurologist',
+    },
   ];
 
   String selectedDoctor = 'Dr. Anand Patel';
@@ -230,29 +242,38 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
     Get.dialog(
       AlertDialog(
         title: const Text('Patient Referral Confirmation'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Patient Details:',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            infoRow('Name', controller.name.value),
-            infoRow('Age', controller.age.value),
-            infoRow('Gender', controller.gender.value),
-            infoRow('Injury', controller.severity.value),
-            infoRow('Reason', reasonController.text),
-            const SizedBox(height: 16),
-            const Text(
-              'Referral Details:',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            infoRow('Hospital', selectedHospital),
-            infoRow('Doctor', selectedDoctor),
-          ],
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Patient Details:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              infoRow('Name', controller.name.value),
+              infoRow('Age', controller.age.value),
+              infoRow('Gender', controller.gender.value),
+              infoRow('Injury', controller.severity.value),
+              infoRow('Reason', reasonController.text),
+              const SizedBox(height: 16),
+              const Text(
+                'Referral Details:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              infoRow('Hospital', selectedHospital),
+              infoRow('Doctor', selectedDoctor),
+              infoRow(
+                'Specialization',
+                doctors.firstWhere(
+                      (doc) => doc['name'] == selectedDoctor,
+                    )['specialization'] ??
+                    '',
+              ),
+            ],
+          ),
         ),
-        actions: [
+        actions: <Widget>[
           TextButton(onPressed: () => Get.back(), child: const Text('Cancel')),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
@@ -266,10 +287,9 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
               Get.back(); // Go back to previous screen
 
               Get.snackbar(
-                backgroundColor: Colors.orange.shade300,
-
                 'Patient Referred Successfully',
                 'To: $selectedDoctor\nAt: $selectedHospital',
+                backgroundColor: Colors.orange.shade300,
                 snackPosition: SnackPosition.BOTTOM,
                 duration: const Duration(seconds: 3),
               );
@@ -365,6 +385,7 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
                 border: OutlineInputBorder(),
                 hintText: 'Reason for referral',
               ),
+              maxLines: 3,
             ),
             const SizedBox(height: 15),
 
@@ -390,40 +411,65 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
             const SizedBox(height: 16),
 
             // List: Doctors with Phone Call Functionality
-            const Text("Doctor's"),
+            const Text(
+              "Available Doctors",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 4),
             Column(
               children: doctors.map((doctor) {
                 final doctorName = doctor['name']!;
                 final doctorPhone = doctor['phone']!;
-                return ListTile(
-                  leading: CircleAvatar(
-                    child: Text(doctorName.split(' ')[1][0]),
+                final specialization = doctor['specialization']!;
+                return Card(
+                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      child: Text(doctorName.split(' ')[1][0]),
+                    ),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          doctorName,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          specialization,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.call, color: Colors.green),
+                          onPressed: () async {
+                            final Uri uri = Uri(
+                              scheme: 'tel',
+                              path: doctorPhone,
+                            );
+                            if (await canLaunchUrl(uri)) {
+                              await launchUrl(uri);
+                            } else {
+                              Get.snackbar('Error', 'Cannot launch dialer');
+                            }
+                          },
+                        ),
+                        if (selectedDoctor == doctorName)
+                          const Icon(Icons.check_circle, color: Colors.grey),
+                      ],
+                    ),
+                    onTap: () {
+                      setState(() {
+                        selectedDoctor = doctorName;
+                      });
+                    },
                   ),
-                  title: Text(doctorName),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.call, color: Colors.green),
-                        onPressed: () async {
-                          final Uri uri = Uri(scheme: 'tel', path: doctorPhone);
-                          if (await canLaunchUrl(uri)) {
-                            await launchUrl(uri);
-                          } else {
-                            Get.snackbar('Error', 'Cannot launch dialer');
-                          }
-                        },
-                      ),
-                      if (selectedDoctor == doctorName)
-                        const Icon(Icons.check_circle, color: Colors.black),
-                    ],
-                  ),
-                  onTap: () {
-                    setState(() {
-                      selectedDoctor = doctorName;
-                    });
-                  },
                 );
               }).toList(),
             ),
@@ -434,13 +480,17 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
                 onPressed: _showReferralConfirmation,
                 child: const Text(
                   'Refer Patient',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
               ),
@@ -513,7 +563,7 @@ Widget infoRow(String label, String value) {
           ),
         ),
         const SizedBox(width: 12),
-        Text(value),
+        Flexible(child: Text(value)),
       ],
     ),
   );

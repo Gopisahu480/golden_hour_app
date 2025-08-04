@@ -101,7 +101,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:golden_hour_app/screen/doctors/end_trip_screen.dart';
+import 'package:golden_hour_app/modules/admin/end_trip_screen.dart';
 
 class OrangeGradientAppBar extends StatelessWidget
     implements PreferredSizeWidget {

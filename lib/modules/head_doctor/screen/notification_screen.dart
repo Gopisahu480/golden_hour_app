@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/doctors/assign_patient_screen.dart';
-import 'package:golden_hour_app/screen/doctors/refer_patient_screen.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/assign_patient_screen.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/refer_patient_screen.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
-import '../attender/controller/attender_controller.dart';
+import '../../attender/controller/attender_controller.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});

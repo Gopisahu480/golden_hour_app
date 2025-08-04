@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/utils/splash_screen.dart';
-import 'package:golden_hour_app/screen/otp_login/mobile_number_screen.dart';
-import 'package:golden_hour_app/screen/otp_login/otp_verification_screen.dart';
-import 'package:golden_hour_app/screen/otp_login/password_screen.dart';
+import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart';
+import 'package:golden_hour_app/modules/otp_login/otp_verification_screen.dart';
+import 'package:golden_hour_app/modules/otp_login/password_screen.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:golden_hour_app/screen/doctors/notification_screen.dart';
-import 'package:golden_hour_app/screen/attender/controller/attender_controller.dart';
-import 'package:golden_hour_app/screen/head_doctor/controller/head_doctor_controller.dart';
-import 'package:golden_hour_app/screen/head_doctor/screen/cases_view.dart';
-import 'package:golden_hour_app/screen/head_doctor/screen/head_doctor_profile_view.dart';
-import 'package:golden_hour_app/screen/head_doctor/screen/doctors_list_view.dart';
-import 'package:golden_hour_app/screen/otp_login/mobile_number_screen.dart'; // Assumed login screen import
+import 'package:golden_hour_app/modules/head_doctor/screen/notification_screen.dart';
+import 'package:golden_hour_app/modules/attender/controller/attender_controller.dart';
+import 'package:golden_hour_app/modules/head_doctor/controller/head_doctor_controller.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/cases_view.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/head_doctor_profile_view.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/doctors_list_view.dart';
+import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart'; // Assumed login screen import
 
 class HeadDoctorDashboard extends StatelessWidget {
   final HeadDoctorController _controller = Get.put(HeadDoctorController());

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:golden_hour_app/screen/attender/attender_profile.dart';
-import 'package:golden_hour_app/screen/otp_login/mobile_number_screen.dart';
+import 'package:golden_hour_app/modules/attender/attender_profile.dart';
+import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);

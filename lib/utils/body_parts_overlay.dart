@@ -37,8 +37,8 @@ class BodyPartSelector extends StatelessWidget {
                     child: Icon(
                       Icons.circle,
                       color: controller.selectedBodyParts.contains(part['name'])
-                          ? Colors.green
-                          : Colors.red,
+                          ? const Color.fromARGB(255, 209, 17, 3)
+                          : Colors.green,
                       size: 11,
                     ),
                   ),
@@ -62,22 +62,34 @@ class BodyPartSelector extends StatelessWidget {
                           ),
                           Obx(
                             () => Checkbox(
-                              value: controller.selectedBodyParts
-                                  .contains(part['name']),
+                              value: controller.selectedBodyParts.contains(
+                                part['name'],
+                              ),
                               onChanged: (value) =>
                                   controller.toggleBodyPart(part['name']),
-                              activeColor: Colors.green,
+                              activeColor: const Color.fromARGB(
+                                255,
+                                209,
+                                17,
+                                3,
+                              ),
                             ),
                           ),
                         ]
                       : [
                           Obx(
                             () => Checkbox(
-                              value: controller.selectedBodyParts
-                                  .contains(part['name']),
+                              value: controller.selectedBodyParts.contains(
+                                part['name'],
+                              ),
                               onChanged: (value) =>
                                   controller.toggleBodyPart(part['name']),
-                              activeColor: Colors.green,
+                              activeColor: const Color.fromARGB(
+                                255,
+                                209,
+                                17,
+                                3,
+                              ),
                             ),
                           ),
                           Text(
@@ -98,5 +110,8 @@ class BodyPartSelector extends StatelessWidget {
   }
 
   String _capitalize(String s) =>
-      s[0].toUpperCase() + s.substring(1).replaceAllMapped(RegExp(r'[A-Z]'), (match) => ' ${match.group(0)}');
+      s[0].toUpperCase() +
+      s
+          .substring(1)
+          .replaceAllMapped(RegExp(r'[A-Z]'), (match) => ' ${match.group(0)}');
 }
