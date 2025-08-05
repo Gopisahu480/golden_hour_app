@@ -1,3 +1,74 @@
+// class Doctor {
+//   final String id;
+//   final String name;
+//   final String specialty;
+//   final String hospital;
+//   final String mobileNumber;
+//   final bool isHeadDoctor;
+//   final bool isReferralDoctor;
+
+//   Doctor({
+//     required this.id,
+//     required this.name,
+//     required this.specialty,
+//     required this.hospital,
+//     required this.mobileNumber,
+//     required this.isHeadDoctor,
+//     required this.isReferralDoctor,
+//   });
+
+//   factory Doctor.fromJson(Map<String, dynamic> json) {
+//     return Doctor(
+//       id: json['id'],
+//       name: json['name'],
+//       specialty: json['specialty'],
+//       hospital: json['hospital'],
+//       mobileNumber: json['mobile_number'],
+//       isHeadDoctor: json['is_head_doctor'] ?? false,
+//       isReferralDoctor: json['is_referral_doctor'] ?? false,
+//     );
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // lib/models/doctor_model.dart
 class Doctor {
   final String id;

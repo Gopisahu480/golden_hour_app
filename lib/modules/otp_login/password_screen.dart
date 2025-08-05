@@ -36,7 +36,6 @@
 //   }
 // }
 
-
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:golden_hour_app/screen/otp_login/otp_controller.dart';
@@ -94,20 +93,23 @@ class PasswordEntryScreen extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Password Login'),
-        backgroundColor: Colors.orange,
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Password Login'),
+      //   backgroundColor: Colors.orange,
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.lock, size: 80, color: Colors.orange),
-            const SizedBox(height: 20),
+            Center(
+              child: Image.asset('assets/pwd.png', width: 250, height: 200),
+            ),
+
+            // const SizedBox(height: 20),
             const Text(
               "Enter Password",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             TextField(

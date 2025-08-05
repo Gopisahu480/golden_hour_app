@@ -1007,7 +1007,7 @@ class NurseFormScreen extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.info_outline,
-                          color: Colors.orange,
+                          color: Colors.redAccent,
                           size: 28,
                         ),
                         const SizedBox(width: 12),
@@ -1017,7 +1017,7 @@ class NurseFormScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: Colors.orange.shade900,
+                              color: Colors.grey.shade900,
                               letterSpacing: 0.5,
                             ),
                           ),
@@ -1074,7 +1074,7 @@ class NurseFormScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
-                                  color: Colors.orange.shade900,
+                                  color: Colors.black,
                                 ),
                               ),
                               Row(
@@ -1120,7 +1120,7 @@ class NurseFormScreen extends StatelessWidget {
                             labelText: 'Age*',
                             labelStyle: TextStyle(
                               color: Colors.grey.shade400,
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                             filled: true,
                             fillColor: Colors.white,
@@ -1177,14 +1177,14 @@ class NurseFormScreen extends StatelessWidget {
 
                   const SizedBox(height: 32),
                   Text(
-                    'Tap to select the injured body part',
+                    'Tap to select the injured body part :-',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.orange.shade900,
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 10),
                   BodyPartSelector(
                     controller: controller,
                     bodyParts: bodyPartData,
@@ -1192,7 +1192,11 @@ class NurseFormScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   const Text(
                     'Severity',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
                   ),
                   Obx(
                     () => Column(

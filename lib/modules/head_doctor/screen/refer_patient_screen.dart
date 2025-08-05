@@ -1,202 +1,6 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'nurse_controller.dart';
-
-// class ReferPatientScreen extends StatefulWidget {
-//   const ReferPatientScreen({super.key});
-
-//   @override
-//   State<ReferPatientScreen> createState() => _ReferPatientScreenState();
-// }
-
-// class _ReferPatientScreenState extends State<ReferPatientScreen> {
-//   final NurseController controller = Get.find();
-//   final List<String> hospitals = [
-//     'Sunshine Hospital',
-//     'Apollo Hospital',
-//     'City Care Hospital',
-//   ];
-
-//   final List<String> doctors = [
-//     'Dr. Rekha Gupta',
-//     'Dr. Anand Patel',
-//     'Dr. Alok Chatterjee',
-//   ];
-
-//   String selectedDoctor = 'Dr. Anand Patel';
-//   String selectedHospital = 'Sunshine Hospital';
-//   final TextEditingController reasonController = TextEditingController(
-//     text: 'Confirm availability',
-//   );
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Doctor App'),
-//         leading: IconButton(
-//           icon: const Icon(Icons.arrow_back),
-//           onPressed: () => Get.back(),
-//         ),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16),
-//         child: ListView(
-//           children: [
-//             const Text(
-//               'You may refer this patient to another hospital',
-//               style: TextStyle(fontSize: 16),
-//             ),
-//             const SizedBox(height: 24),
-//             patientDetailsCard(controller),
-//             const Text(
-//               'Refer Patient',
-//               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//             ),
-//             const SizedBox(height: 16),
-
-//             // Dropdown: Hospital
-//             const Text('Hospital'),
-//             const SizedBox(height: 4),
-//             DropdownButtonFormField<String>(
-//               value: selectedHospital,
-//               decoration: const InputDecoration(border: OutlineInputBorder()),
-//               items: hospitals.map((hospital) {
-//                 return DropdownMenuItem(value: hospital, child: Text(hospital));
-//               }).toList(),
-//               onChanged: (value) {
-//                 setState(() {
-//                   selectedHospital = value!;
-//                 });
-//               },
-//             ),
-
-//             const SizedBox(height: 16),
-
-//             // Radio Buttons: Doctor
-//             const Text("Head Doctor's"),
-//             const SizedBox(height: 4),
-//             Column(
-//               children: doctors.map((doctor) {
-//                 return RadioListTile<String>(
-//                   title: Text(doctor),
-//                   value: doctor,
-//                   groupValue: selectedDoctor,
-//                   onChanged: (value) {
-//                     setState(() {
-//                       selectedDoctor = value!;
-//                     });
-//                   },
-//                 );
-//               }).toList(),
-//             ),
-
-//             const SizedBox(height: 16),
-
-//             // Reason Input
-//             const Text('Reason'),
-//             const SizedBox(height: 4),
-//             TextField(
-//               controller: reasonController,
-//               decoration: const InputDecoration(
-//                 border: OutlineInputBorder(),
-//                 hintText: 'Reason for referral',
-//               ),
-//             ),
-
-//             const SizedBox(height: 24),
-
-//             // Refer Button
-//             SizedBox(
-//               width: double.infinity,
-//               child: ElevatedButton(
-//                 style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-//                 onPressed: () {
-//                   controller.referredHospital.value = selectedHospital;
-//                   controller.referredDoctor.value = selectedDoctor;
-//                   controller.referralReason.value = reasonController.text;
-
-//                   Get.snackbar(
-//                     'Patient Referred',
-//                     'To: $selectedDoctor\nAt: $selectedHospital',
-//                     snackPosition: SnackPosition.BOTTOM,
-//                   );
-
-//                   Get.back();
-//                 },
-//                 child: const Text('Refer Patient'),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// Widget patientDetailsCard(NurseController controller) {
-//   return Obx(
-//     () => Card(
-//       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-//       elevation: 2,
-//       margin: const EdgeInsets.only(bottom: 24),
-//       child: Padding(
-//         padding: const EdgeInsets.all(16),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             const Text(
-//               'Incoming Patient Details',
-//               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-//             ),
-//             const SizedBox(height: 12),
-//             infoRow('Name', controller.name.value),
-//             infoRow('Age', controller.age.value),
-//             infoRow('Gender', controller.gender.value),
-//             infoRow('Injury', controller.severity.value),
-//             const SizedBox(height: 8),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 const Text('8 min'),
-//                 Container(
-//                   padding: const EdgeInsets.symmetric(
-//                     horizontal: 10,
-//                     vertical: 4,
-//                   ),
-//                   decoration: BoxDecoration(
-//                     color: Colors.orange,
-//                     borderRadius: BorderRadius.circular(20),
-//                   ),
-//                   child: Text(
-//                     controller.severity.value,
-//                     style: const TextStyle(color: Colors.white),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     ),
-//   );
-// }
-
-// Widget infoRow(String label, String value) {
-//   return Padding(
-//     padding: const EdgeInsets.only(bottom: 6),
-//     child: Row(
-//       children: [
-//         Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
-//         const SizedBox(width: 12),
-//         Text(value),
-//       ],
-//     ),
-//   );
-// }
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:golden_hour_app/modules/head_doctor/screen/assign_patient_screen.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../attender/controller/attender_controller.dart';
@@ -502,54 +306,6 @@ class _ReferPatientScreenState extends State<ReferPatientScreen> {
   }
 }
 
-Widget patientDetailsCard(NurseController controller) {
-  return Obx(
-    () => Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
-      margin: const EdgeInsets.only(bottom: 24),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Incoming Patient Details',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            const SizedBox(height: 12),
-            infoRow('Name', controller.name.value),
-            infoRow('Age', controller.age.value),
-            infoRow('Gender', controller.gender.value),
-            infoRow('Injury', controller.severity.value),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('8 min'),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.orange,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    controller.severity.value,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
 Widget infoRow(String label, String value) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 6),
@@ -568,3 +324,345 @@ Widget infoRow(String label, String value) {
     ),
   );
 }
+
+
+
+
+
+//if doctor list show after the hospital  select
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:golden_hour_app/modules/head_doctor/screen/assign_patient_screen.dart';
+// import 'package:golden_hour_app/utils/custome_appbar.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import '../../attender/controller/attender_controller.dart';
+
+// class ReferPatientScreen extends StatefulWidget {
+//   const ReferPatientScreen({super.key});
+
+//   @override
+//   State<ReferPatientScreen> createState() => _ReferPatientScreenState();
+// }
+
+// class _ReferPatientScreenState extends State<ReferPatientScreen> {
+//   final NurseController controller = Get.find();
+//   final List<String> hospitals = [
+//     'Sunshine Hospital',
+//     'Apollo Hospital',
+//     'City Care Hospital',
+//   ];
+
+//   final List<Map<String, String>> doctors = [
+//     {
+//       'name': 'Dr. Rekha Gupta',
+//       'phone': '9812345678',
+//       'specialization': 'Dermatologist',
+//     },
+//     {
+//       'name': 'Dr. Anand Patel',
+//       'phone': '9823456789',
+//       'specialization': 'Cardiologist',
+//     },
+//     {
+//       'name': 'Dr. Alok Chatterjee',
+//       'phone': '9834567890',
+//       'specialization': 'Neurologist',
+//     },
+//   ];
+
+//   String? selectedHospital; // Changed to nullable String
+//   String selectedDoctor = 'Dr. Anand Patel';
+//   final TextEditingController reasonController = TextEditingController();
+
+//   void _showReferralConfirmation() {
+//     if (selectedHospital == null) {
+//       Get.snackbar('Error', 'Please select a hospital');
+//       return;
+//     }
+//     Get.dialog(
+//       AlertDialog(
+//         title: const Text('Patient Referral Confirmation'),
+//         content: SingleChildScrollView(
+//           child: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               const Text(
+//                 'Patient Details:',
+//                 style: TextStyle(fontWeight: FontWeight.bold),
+//               ),
+//               infoRow('Name', controller.name.value),
+//               infoRow('Age', controller.age.value),
+//               infoRow('Gender', controller.gender.value),
+//               infoRow('Injury', controller.severity.value),
+//               infoRow('Reason', reasonController.text),
+//               const SizedBox(height: 16),
+//               const Text(
+//                 'Referral Details:',
+//                 style: TextStyle(fontWeight: FontWeight.bold),
+//               ),
+//               infoRow('Hospital', selectedHospital!),
+//               infoRow('Doctor', selectedDoctor),
+//               infoRow(
+//                 'Specialization',
+//                 doctors.firstWhere(
+//                       (doc) => doc['name'] == selectedDoctor,
+//                     )['specialization'] ??
+//                     '',
+//               ),
+//             ],
+//           ),
+//         ),
+//         actions: <Widget>[
+//           TextButton(onPressed: () => Get.back(), child: const Text('Cancel')),
+//           ElevatedButton(
+//             style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+//             onPressed: () {
+//               controller.referredHospital.value = selectedHospital!;
+//               controller.referredDoctor.value = selectedDoctor;
+//               controller.referralReason.value = reasonController.text;
+
+//               Get.back();
+//               Get.back();
+
+//               Get.snackbar(
+//                 'Patient Referred Successfully',
+//                 'To: $selectedDoctor\nAt: $selectedHospital',
+//                 backgroundColor: Colors.orange.shade300,
+//                 snackPosition: SnackPosition.BOTTOM,
+//                 duration: const Duration(seconds: 3),
+//               );
+//             },
+//             child: const Text(
+//               'Confirm Referral',
+//               style: TextStyle(
+//                 color: Colors.white,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: OrangeGradientAppBar(
+//         title: 'Doctor Refer Patient',
+//         showBackButton: false,
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16),
+//         child: ListView(
+//           children: [
+//             Container(
+//               margin: const EdgeInsets.symmetric(
+//                 horizontal: 16.0,
+//                 vertical: 12.0,
+//               ),
+//               padding: const EdgeInsets.all(16.0),
+//               decoration: BoxDecoration(
+//                 color: Colors.orange.shade50,
+//                 borderRadius: BorderRadius.circular(12.0),
+//                 boxShadow: [
+//                   BoxShadow(
+//                     color: Colors.orange.shade200.withOpacity(0.5),
+//                     blurRadius: 6,
+//                     offset: const Offset(0, 3),
+//                   ),
+//                 ],
+//                 border: Border.all(color: Colors.orange.shade200),
+//               ),
+//               child: Column(
+//                 children: [
+//                   Row(
+//                     crossAxisAlignment: CrossAxisAlignment.center,
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       const Icon(
+//                         Icons.local_hospital_outlined,
+//                         color: Colors.orange,
+//                         size: 28,
+//                       ),
+//                       const SizedBox(width: 10),
+//                       Text(
+//                         'Referral Option',
+//                         style: TextStyle(
+//                           fontSize: 20,
+//                           fontWeight: FontWeight.bold,
+//                           color: Colors.orange.shade900,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   const SizedBox(height: 12),
+//                   Padding(
+//                     padding: const EdgeInsets.only(left: 37.0),
+//                     child: Text(
+//                       'You may refer this patient to another hospital',
+//                       style: TextStyle(
+//                         fontSize: 16,
+//                         color: Colors.orange.shade800,
+//                         fontWeight: FontWeight.w500,
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             const SizedBox(height: 24),
+//             patientDetailsCard(controller),
+
+//             // Reason Input
+//             const Text('Reason', style: TextStyle(fontWeight: FontWeight.bold)),
+//             const SizedBox(height: 4),
+//             TextField(
+//               controller: reasonController,
+//               decoration: const InputDecoration(
+//                 border: OutlineInputBorder(),
+//                 hintText: 'Reason for referral',
+//               ),
+//               maxLines: 3,
+//             ),
+//             const SizedBox(height: 15),
+
+//             // Dropdown: Hospital
+//             const Text(
+//               'Hospital',
+//               style: TextStyle(fontWeight: FontWeight.bold),
+//             ),
+//             const SizedBox(height: 4),
+//             DropdownButtonFormField<String>(
+//               value: selectedHospital,
+//               decoration: const InputDecoration(
+//                 border: OutlineInputBorder(),
+//                 hintText: 'Select a hospital',
+//               ),
+//               items: hospitals.map((hospital) {
+//                 return DropdownMenuItem(value: hospital, child: Text(hospital));
+//               }).toList(),
+//               onChanged: (value) {
+//                 setState(() {
+//                   selectedHospital = value;
+//                   // Reset selectedDoctor when hospital changes
+//                   selectedDoctor = doctors[0]['name']!;
+//                 });
+//               },
+//             ),
+
+//             const SizedBox(height: 16),
+
+//             // Doctor List: Show only if a hospital is selected
+//             if (selectedHospital != null) ...[
+//               const Text(
+//                 "Available Doctors",
+//                 style: TextStyle(fontWeight: FontWeight.bold),
+//               ),
+//               const SizedBox(height: 4),
+//               Column(
+//                 children: doctors.map((doctor) {
+//                   final doctorName = doctor['name']!;
+//                   final doctorPhone = doctor['phone']!;
+//                   final specialization = doctor['specialization']!;
+//                   return Card(
+//                     margin: const EdgeInsets.symmetric(vertical: 4),
+//                     child: ListTile(
+//                       leading: CircleAvatar(
+//                         child: Text(doctorName.split(' ')[1][0]),
+//                       ),
+//                       title: Column(
+//                         crossAxisAlignment: CrossAxisAlignment.start,
+//                         children: [
+//                           Text(
+//                             doctorName,
+//                             style: const TextStyle(fontWeight: FontWeight.bold),
+//                           ),
+//                           Text(
+//                             specialization,
+//                             style: TextStyle(
+//                               fontSize: 12,
+//                               color: Colors.grey.shade600,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                       trailing: Row(
+//                         mainAxisSize: MainAxisSize.min,
+//                         children: [
+//                           IconButton(
+//                             icon: const Icon(Icons.call, color: Colors.green),
+//                             onPressed: () async {
+//                               final Uri uri = Uri(
+//                                 scheme: 'tel',
+//                                 path: doctorPhone,
+//                               );
+//                               if (await canLaunchUrl(uri)) {
+//                                 await launchUrl(uri);
+//                               } else {
+//                                 Get.snackbar('Error', 'Cannot launch dialer');
+//                               }
+//                             },
+//                           ),
+//                           if (selectedDoctor == doctorName)
+//                             const Icon(Icons.check_circle, color: Colors.grey),
+//                         ],
+//                       ),
+//                       onTap: () {
+//                         setState(() {
+//                           selectedDoctor = doctorName;
+//                         });
+//                       },
+//                     ),
+//                   );
+//                 }).toList(),
+//               ),
+//             ],
+
+//             const SizedBox(height: 24),
+
+//             // Refer Button
+//             SizedBox(
+//               width: double.infinity,
+//               child: ElevatedButton(
+//                 style: ElevatedButton.styleFrom(
+//                   backgroundColor: Colors.orange,
+//                   padding: const EdgeInsets.symmetric(vertical: 16),
+//                 ),
+//                 onPressed: _showReferralConfirmation,
+//                 child: const Text(
+//                   'Refer Patient',
+//                   style: TextStyle(
+//                     color: Colors.white,
+//                     fontWeight: FontWeight.bold,
+//                     fontSize: 16,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// Widget infoRow(String label, String value) {
+//   return Padding(
+//     padding: const EdgeInsets.only(bottom: 6),
+//     child: Row(
+//       children: [
+//         SizedBox(
+//           width: 80,
+//           child: Text(
+//             label,
+//             style: const TextStyle(fontWeight: FontWeight.bold),
+//           ),
+//         ),
+//         const SizedBox(width: 12),
+//         Flexible(child: Text(value)),
+//       ],
+//     ),
+//   );
+// }
