@@ -31,7 +31,7 @@
 //     if (status != null) {
 //       url += '?status=$status';
 //     }
-    
+
 //     final response = await http.get(Uri.parse(url));
 //     if (response.statusCode == 200) {
 //       List<dynamic> data = json.decode(response.body);
@@ -65,7 +65,9 @@ class DoctorService extends GetxService {
 
   // Mock head doctor profile
   Future<Doctor> getHeadDoctorProfile(String doctorId) async {
-    await Future.delayed(const Duration(milliseconds: 500)); // Simulate network delay
+    await Future.delayed(
+      const Duration(milliseconds: 500),
+    ); // Simulate network delay
     return Doctor(
       id: 'doc_001',
       name: 'Dr. Rajesh Sharma',
@@ -112,9 +114,12 @@ class DoctorService extends GetxService {
   }
 
   // Mock cases data
-  Future<List<MedicalCase>> getHospitalCases(String hospitalId, {String? status}) async {
+  Future<List<MedicalCase>> getHospitalCases(
+    String hospitalId, {
+    String? status,
+  }) async {
     await Future.delayed(const Duration(milliseconds: 700));
-    
+
     final allCases = [
       MedicalCase(
         id: 'case_001',
@@ -154,6 +159,218 @@ class DoctorService extends GetxService {
         assignedDoctorId: 'doc_002',
         hospitalId: 'hosp_001',
       ),
+       MedicalCase(
+        id: 'case_006',
+        patientName: 'Rani S',
+        caseType: 'Pneumonia',
+        status: 'active',
+        admissionDate: DateTime.now().subtract(const Duration(days: 10)),
+        assignedDoctorId: 'doc_004',
+        hospitalId: 'hosp_001',
+      ),
+       MedicalCase(
+        id: 'case_007',
+        patientName: 'Neha',
+        caseType: 'Pneumonia',
+        status: 'completed',
+        admissionDate: DateTime.now().subtract(const Duration(days: 10)),
+        assignedDoctorId: 'doc_004',
+        hospitalId: 'hosp_001',
+      ),
+      
+  MedicalCase(
+    id: 'case_201',
+    patientName: 'Neha',
+    caseType: 'Pneumonia',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 10)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 7)),
+    assignedDoctorId: 'doc_004',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_202',
+    patientName: 'Sunita Devi',
+    caseType: 'Stroke',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 9)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 6)),
+    assignedDoctorId: 'doc_003',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_203',
+    patientName: 'Meena Kumari',
+    caseType: 'Fracture',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 8)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 5)),
+    assignedDoctorId: 'doc_002',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_204',
+    patientName: 'Ayesha Khan',
+    caseType: 'Malaria',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 7)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 4)),
+    assignedDoctorId: 'doc_005',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_205',
+    patientName: 'Gopal Das',
+    caseType: 'Tuberculosis',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 6)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 3)),
+    assignedDoctorId: 'doc_001',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_206',
+    patientName: 'Vinod Rao',
+    caseType: 'COVID-19',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 5)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 2)),
+    assignedDoctorId: 'doc_003',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_207',
+    patientName: 'Harshita R',
+    caseType: 'Dengue',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 4)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 1)),
+    assignedDoctorId: 'doc_002',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_208',
+    patientName: 'Rajesh B',
+    caseType: 'Migraine',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 3)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 1)),
+    assignedDoctorId: 'doc_004',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_209',
+    patientName: 'Preeti S',
+    caseType: 'Low BP',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 2)),
+    dischargeDate: DateTime.now().subtract(Duration(days: 1)),
+    assignedDoctorId: 'doc_001',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_210',
+    patientName: 'Santosh D',
+    caseType: 'Skin Infection',
+    status: 'completed',
+    admissionDate: DateTime.now().subtract(Duration(days: 1)),
+    dischargeDate: DateTime.now(),
+    assignedDoctorId: 'doc_005',
+    hospitalId: 'hosp_001',
+  ),
+ 
+  MedicalCase(
+    id: 'case_101',
+    patientName: 'Amit Sharma',
+    caseType: 'Asthma',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(days: 20)),
+    assignedDoctorId: 'doc_005',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_102',
+    patientName: 'Sita Ram',
+    caseType: 'Dengue',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(days: 15)),
+    assignedDoctorId: 'doc_002',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_103',
+    patientName: 'Kiran Gupta',
+    caseType: 'COVID-19',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(days: 12)),
+    assignedDoctorId: 'doc_003',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_104',
+    patientName: 'Manoj Yadav',
+    caseType: 'Pneumonia',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(days: 10)),
+    assignedDoctorId: 'doc_004',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_105',
+    patientName: 'Rani S',
+    caseType: 'Pneumonia',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(days: 10)),
+    assignedDoctorId: 'doc_004',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_106',
+    patientName: 'Arjun Singh',
+    caseType: 'Pneumonia',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(hours: 12)),
+    assignedDoctorId: 'doc_004',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_107',
+    patientName: 'Rahul Verma',
+    caseType: 'Cardiac Arrest',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(days: 1)),
+    assignedDoctorId: 'doc_002',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_108',
+    patientName: 'Rohit Khanna',
+    caseType: 'Kidney Stone',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(hours: 8)),
+    assignedDoctorId: 'doc_001',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_109',
+    patientName: 'Payal D',
+    caseType: 'High Fever',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(hours: 6)),
+    assignedDoctorId: 'doc_002',
+    hospitalId: 'hosp_001',
+  ),
+  MedicalCase(
+    id: 'case_110',
+    patientName: 'Imran Sheikh',
+    caseType: 'Burn Injury',
+    status: 'active',
+    admissionDate: DateTime.now().subtract(Duration(hours: 2)),
+    assignedDoctorId: 'doc_003',
+    hospitalId: 'hosp_001',
+  ),
+
+
     ];
 
     if (status != null) {

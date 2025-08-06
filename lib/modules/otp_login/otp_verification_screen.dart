@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/modules/otp_login/otp_controller.dart';
 import 'package:golden_hour_app/modules/otp_login/password_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
   const OTPVerificationScreen({super.key});
@@ -23,16 +24,26 @@ class OTPVerificationScreen extends StatelessWidget {
                 Image.asset('assets/pwd.png', width: 250, height: 200),
 
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   "Enter Verification Code",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 TextField(
                   controller: otpController,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Enter OTP',
+                    hintStyle: GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: Colors.grey[600],
+                      fontWeight: FontWeight.w400,
+                    ),
+
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -41,13 +52,16 @@ class OTPVerificationScreen extends StatelessWidget {
                   onPressed: () {
                     Get.to(() => const PasswordEntryScreen());
                   },
-                  child: const Text(
+                  child: Text(
                     "Didn't receive the OTP? Click here to enter your password.",
-                    style: TextStyle(fontSize: 12),
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -59,7 +73,10 @@ class OTPVerificationScreen extends StatelessWidget {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                       ),
-                      child: const Text("Resend OTP"),
+                      child: Text(
+                        "Resend OTP",
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                      ),
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -69,7 +86,10 @@ class OTPVerificationScreen extends StatelessWidget {
                         backgroundColor: Colors.orange,
                         foregroundColor: Colors.white,
                       ),
-                      child: const Text("Submit"),
+                      child: Text(
+                        "Submit",
+                        style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ],
                 ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/modules/head_doctor/controller/head_doctor_controller.dart';
 import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HeadDoctorProfileView extends StatelessWidget {
   HeadDoctorProfileView({super.key});
@@ -34,8 +35,8 @@ class HeadDoctorProfileView extends StatelessWidget {
             Center(
               child: Text(
                 doctor.name,
-                style: const TextStyle(
-                  fontSize: 24,
+                style: GoogleFonts.poppins(
+                  fontSize: 21,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -43,7 +44,10 @@ class HeadDoctorProfileView extends StatelessWidget {
             Center(
               child: Text(
                 doctor.specialty,
-                style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  color: Colors.grey[600],
+                ),
               ),
             ),
             const SizedBox(height: 30),
@@ -71,8 +75,8 @@ class HeadDoctorProfileView extends StatelessWidget {
                 icon: Icon(Icons.logout, color: Colors.white),
                 label: Text(
                   'Logout',
-                  style: TextStyle(
-                    fontSize: 16,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
@@ -103,7 +107,10 @@ class HeadDoctorProfileView extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 10),
             ...children,
@@ -119,10 +126,13 @@ class HeadDoctorProfileView extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: const TextStyle(fontSize: 16)),
+          Text(label, style: GoogleFonts.poppins(fontSize: 14)),
           Text(
             value,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
@@ -136,7 +146,7 @@ class HeadDoctorProfileView extends StatelessWidget {
         children: [
           Icon(icon, size: 20),
           const SizedBox(width: 10),
-          Text(text, style: const TextStyle(fontSize: 16)),
+          Text(text, style: GoogleFonts.poppins(fontSize: 14)),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BodyPartSelector extends StatelessWidget {
   final dynamic controller;
@@ -55,7 +56,7 @@ class BodyPartSelector extends StatelessWidget {
                       ? [
                           Text(
                             _capitalize(part['name']),
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
@@ -94,7 +95,7 @@ class BodyPartSelector extends StatelessWidget {
                           ),
                           Text(
                             _capitalize(part['name']),
-                            style: const TextStyle(
+                            style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),

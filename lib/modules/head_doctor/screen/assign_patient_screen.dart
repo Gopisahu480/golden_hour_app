@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../attender/controller/attender_controller.dart';
 
@@ -52,19 +53,22 @@ class _AssignPatientScreenState extends State<AssignPatientScreen> {
             children: [
               const Icon(Icons.check_circle, color: Colors.green, size: 80),
               const SizedBox(height: 15),
-              const Text(
+              Text(
                 "Assigned Successfully",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 8),
               Text.rich(
                 TextSpan(
                   text: "Patient assigned to ",
-                  style: const TextStyle(color: Colors.black),
+                  style: GoogleFonts.poppins(color: Colors.black),
                   children: [
                     TextSpan(
                       text: doctorName,
-                      style: const TextStyle(
+                      style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         color: Colors.blueGrey,
                       ),
@@ -137,7 +141,7 @@ class _AssignPatientScreenState extends State<AssignPatientScreen> {
                       const SizedBox(width: 10),
                       Text(
                         'Assign Patient',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.orange.shade900,
@@ -147,11 +151,11 @@ class _AssignPatientScreenState extends State<AssignPatientScreen> {
                   ),
                   const SizedBox(height: 12),
                   Padding(
-                    padding: const EdgeInsets.only(left: 37.0),
+                    padding: const EdgeInsets.only(left: 3.0),
                     child: Text(
                       'You may assign this patient to a doctor',
-                      style: TextStyle(
-                        fontSize: 16,
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
                         color: Colors.orange.shade800,
                         fontWeight: FontWeight.w500,
                       ),
@@ -163,9 +167,12 @@ class _AssignPatientScreenState extends State<AssignPatientScreen> {
             const SizedBox(height: 24),
             patientDetailsCard(controller),
             const SizedBox(height: 24),
-            const Text(
+            Text(
               "Available Doctors",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
             ),
             const SizedBox(height: 4),
             Column(
@@ -184,11 +191,14 @@ class _AssignPatientScreenState extends State<AssignPatientScreen> {
                       children: [
                         Text(
                           doctorName,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
                         ),
                         Text(
                           specialization,
-                          style: TextStyle(
+                          style: GoogleFonts.poppins(
                             fontSize: 12,
                             color: Colors.grey.shade600,
                           ),
@@ -247,9 +257,9 @@ class _AssignPatientScreenState extends State<AssignPatientScreen> {
                     selectedDoctorData['phone']!,
                   );
                 },
-                child: const Text(
+                child: Text(
                   'Assign Patient',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -278,17 +288,17 @@ Widget patientDetailsCard(NurseController controller) {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Incoming Patient Details',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 15,
                     letterSpacing: 1.2,
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
+                    horizontal: 3,
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
@@ -297,7 +307,7 @@ Widget patientDetailsCard(NurseController controller) {
                   ),
                   child: Text(
                     controller.severity.value,
-                    style: const TextStyle(
+                    style: GoogleFonts.poppins(
                       color: Colors.red,
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
@@ -309,8 +319,8 @@ Widget patientDetailsCard(NurseController controller) {
             const SizedBox(height: 12),
             Text(
               'Name: ${controller.name.value}',
-              style: const TextStyle(
-                fontSize: 18,
+              style: GoogleFonts.poppins(
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.blueGrey,
               ),
@@ -318,11 +328,15 @@ Widget patientDetailsCard(NurseController controller) {
             const SizedBox(height: 8),
             Row(
               children: [
-                Icon(Icons.person_outline, size: 16, color: Colors.grey[600]),
-                const SizedBox(width: 4),
+                // Icon(Icons.person_outline, size: 16, color: Colors.grey[600]),
+                // const SizedBox(width: 4),
+                const SizedBox(width: 8),
                 Text(
                   '${controller.age.value} years • ${controller.gender.value}',
-                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: Colors.grey[700],
+                  ),
                 ),
               ],
             ),
@@ -330,9 +344,9 @@ Widget patientDetailsCard(NurseController controller) {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Medical Summary',
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     color: Colors.blueGrey,
                   ),
@@ -340,19 +354,19 @@ Widget patientDetailsCard(NurseController controller) {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    const Icon(
-                      Icons.medical_services,
-                      size: 16,
-                      color: Colors.red,
-                    ),
+                    // const Icon(
+                    //   Icons.medical_services,
+                    //   size: 16,
+                    //   color: Colors.red,
+                    // ),
                     const SizedBox(width: 8),
-                    const Text(
+                    Text(
                       'Criticality: ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                     ),
                     Text(
                       controller.severity.value,
-                      style: const TextStyle(
+                      style: GoogleFonts.poppins(
                         color: Colors.red,
                         fontWeight: FontWeight.bold,
                       ),
@@ -362,38 +376,43 @@ Widget patientDetailsCard(NurseController controller) {
                 const SizedBox(height: 4),
                 Row(
                   children: [
-                    const Icon(Icons.healing, size: 16, color: Colors.orange),
+                    // const Icon(Icons.healing, size: 16, color: Colors.orange),
                     const SizedBox(width: 8),
-                    const Text(
+                    Text(
                       'Injury: ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                     ),
                     Flexible(
                       child: Text(
-                        'Chest,Head,Left Leg,Head',
+                        'Chest,Head',
                         // controller.severity.value.isEmpty
                         //     ? 'Not specified'
                         //     : controller.severity.value,
-                        style: TextStyle(color: Colors.grey[800]),
+                        style: GoogleFonts.poppins(color: Colors.grey[800]),
                       ),
                     ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.access_time,
-                          color: Colors.orange,
-                          size: 16,
-                        ), // Clock icon
-                        const SizedBox(width: 6), // Space between icon and text
-                        const Text(
-                          'ETA : 8 min',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 51.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            color: Colors.orange,
+                            size: 16,
+                          ), // Clock icon
+                          const SizedBox(
+                            width: 6,
+                          ), // Space between icon and text
+                          Text(
+                            'ETA : 8 min',
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

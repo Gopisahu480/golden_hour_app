@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:golden_hour_app/modules/attender/attender_profile.dart';
 import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -34,9 +35,9 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ],
             ),
-            accountName: const Text(
+            accountName: Text(
               'John Doe', // Replace with actual user name
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -45,7 +46,7 @@ class CustomDrawer extends StatelessWidget {
             ),
             accountEmail: Text(
               'john.doe@example.com', // Replace with actual user email
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: Colors.white.withOpacity(0.85),
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -68,7 +69,6 @@ class CustomDrawer extends StatelessWidget {
             title: 'Profile',
             onTap: () {
               Get.to(() => EMTProfileScreen()); // Navigate to login screen
-             
             },
           ),
           _buildListTile(
@@ -102,7 +102,6 @@ class CustomDrawer extends StatelessWidget {
             title: 'Logout',
             onTap: () {
               Get.to(() => MobileNumberScreen()); // Navigate to login screen
-             
             },
             textColor: Colors.red.shade600, // Red color for logout
             iconColor: Colors.red.shade600,
@@ -122,21 +121,19 @@ class CustomDrawer extends StatelessWidget {
   }) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      leading: Icon(
-        icon,
-        color: iconColor ?? Colors.grey.shade700,
-        size: 24,
-      ),
+      leading: Icon(icon, color: iconColor ?? Colors.grey.shade700, size: 24),
       title: Text(
         title,
-        style: TextStyle(
+        style: GoogleFonts.poppins(
           color: textColor ?? Colors.grey.shade900,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
       ),
       onTap: onTap,
-      hoverColor: Colors.orange.shade100.withOpacity(0.2), // Subtle hover effect
+      hoverColor: Colors.orange.shade100.withOpacity(
+        0.2,
+      ), // Subtle hover effect
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8), // Rounded corners
       ),

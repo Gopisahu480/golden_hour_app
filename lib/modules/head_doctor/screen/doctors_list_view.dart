@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/modules/head_doctor/controller/head_doctor_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DoctorsListView extends StatelessWidget {
   DoctorsListView({super.key});
@@ -28,8 +29,11 @@ class DoctorsListView extends StatelessWidget {
                 ),
               ),
 
-              title: Text(doctor.name),
-              subtitle: Text(doctor.specialty),
+              title: Text(
+                doctor.name,
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(doctor.specialty, style: GoogleFonts.poppins()),
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 // Navigate to doctor details if needed

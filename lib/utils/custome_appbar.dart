@@ -102,6 +102,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:golden_hour_app/modules/admin/end_trip_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OrangeGradientAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -136,9 +137,9 @@ class OrangeGradientAppBar extends StatelessWidget
 
       title: Text(
         title,
-        style: const TextStyle(
+        style: GoogleFonts.roboto(
           fontWeight: FontWeight.bold,
-          fontSize: 19,
+          fontSize: 19.1,
           color: Colors.white,
           shadows: [
             Shadow(

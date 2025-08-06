@@ -2,6 +2,7 @@ import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/modules/otp_login/mobile_number_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -48,12 +49,12 @@ class SplashScreen extends StatelessWidget {
                 child: Image.asset("assets/laoding_clock.gif"),
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 "Loading...",
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   decoration: TextDecoration.none,
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
               ),

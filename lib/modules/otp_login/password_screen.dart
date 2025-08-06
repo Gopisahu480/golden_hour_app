@@ -83,6 +83,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/modules/otp_login/otp_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PasswordEntryScreen extends StatelessWidget {
   const PasswordEntryScreen({super.key});
@@ -107,34 +108,74 @@ class PasswordEntryScreen extends StatelessWidget {
             ),
 
             // const SizedBox(height: 20),
-            const Text(
+            Text(
               "Enter Password",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 20),
             TextField(
               controller: passwordController,
               keyboardType: TextInputType.text,
               obscureText: true,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Enter Password',
+                hintStyle: GoogleFonts.poppins(
+                  fontSize: 16,
+                  color: Colors.grey[600],
+                  fontWeight: FontWeight.w400,
+                ),
+
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                controller.verifyPassword(passwordController.text, context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                foregroundColor: Colors.white,
-              ),
-              child: const Text("Submit"),
-            ),
-            TextButton(
-              onPressed: () => Get.back(),
-              child: const Text("Back to OTP Login"),
+            const SizedBox(height: 40),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     controller.verifyPassword(passwordController.text, context);
+            //   },
+            //   style: ElevatedButton.styleFrom(
+            //     backgroundColor: Colors.orange,
+            //     foregroundColor: Colors.white,
+            //   ),
+            //   child: const Text("Submit"),
+            // ),
+            // TextButton(
+            //   onPressed: () => Get.back(),
+            //   child: const Text("Back to OTP Login"),
+            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: Text(
+                    "Return to OTP Login",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.verifyPassword(passwordController.text, context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    foregroundColor: Colors.white,
+                  ),
+                  child: Text(
+                    "Submit",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

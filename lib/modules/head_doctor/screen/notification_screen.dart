@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:golden_hour_app/modules/head_doctor/screen/assign_patient_screen.dart';
 import 'package:golden_hour_app/modules/head_doctor/screen/refer_patient_screen.dart';
 import 'package:golden_hour_app/utils/custome_appbar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../attender/controller/attender_controller.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -62,8 +63,8 @@ class NotificationScreen extends StatelessWidget {
                         const SizedBox(width: 10),
                         Text(
                           'Incoming Patient Alert',
-                          style: TextStyle(
-                            fontSize: 20,
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.orange.shade900,
                           ),
@@ -75,8 +76,8 @@ class NotificationScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 37.0),
                       child: Text(
                         'An ambulance is bringing a patient to your hospital.',
-                        style: TextStyle(
-                          fontSize: 16,
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
                           color: Colors.orange.shade800,
                           fontWeight: FontWeight.w500,
                         ),
@@ -113,8 +114,8 @@ class NotificationScreen extends StatelessWidget {
                             children: [
                               Text(
                                 'Patient Details',
-                                style: TextStyle(
-                                  fontSize: 18,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.grey[800],
                                 ),
@@ -139,7 +140,7 @@ class NotificationScreen extends StatelessWidget {
                                 ),
                                 child: Text(
                                   controller.severity.value,
-                                  style: const TextStyle(
+                                  style: GoogleFonts.poppins(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -148,15 +149,15 @@ class NotificationScreen extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 16),
-                          _infoRow('Name', controller.name.value),
-                          _infoRow('Age', controller.age.value),
-                          _infoRow('Gender', controller.gender.value),
+                          _infoRow('Name :', controller.name.value),
+                          _infoRow('Age :', controller.age.value),
+                          _infoRow('Gender :', controller.gender.value),
                           _infoRow(
-                            'Injury Severity',
+                            'Injury Severity :',
                             controller.severity.value,
                           ),
                           _infoRow(
-                            'Injured Body Parts',
+                            'Injured Body Parts :',
                             controller.selectedBodyPartsDisplay.isNotEmpty
                                 ? controller.selectedBodyPartsDisplay.join(', ')
                                 : 'Not specified',
@@ -173,7 +174,7 @@ class NotificationScreen extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 'ETA: 8 min',
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                   color: Colors.grey[600],
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -227,7 +228,7 @@ class NotificationScreen extends StatelessWidget {
             width: 120,
             child: Text(
               label,
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: Colors.grey[700],
               ),
@@ -236,7 +237,7 @@ class NotificationScreen extends StatelessWidget {
           Expanded(
             child: Text(
               value,
-              style: TextStyle(color: Colors.grey[800], fontSize: 16),
+              style: GoogleFonts.poppins(color: Colors.grey[800], fontSize: 16),
             ),
           ),
         ],
@@ -269,8 +270,8 @@ class NotificationScreen extends StatelessWidget {
           children: [
             Text(
               label,
-              style: const TextStyle(
-                fontSize: 15,
+              style: GoogleFonts.roboto(
+                fontSize: 15.5,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
