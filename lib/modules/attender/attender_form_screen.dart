@@ -108,8 +108,8 @@ class NurseFormScreen extends StatelessWidget {
                   // Info Box
                   Container(
                     margin: const EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: 12.0,
+                      horizontal: 0.0,
+                      vertical: 8.0,
                     ),
                     padding: const EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
@@ -136,7 +136,7 @@ class NurseFormScreen extends StatelessWidget {
                           child: Text(
                             'Enter patient information and select the hospital for ambulance transport.',
                             style: GoogleFonts.poppins(
-                              fontSize: 15,
+                              fontSize: 13,
                               fontWeight: FontWeight.w600,
                               color: Colors.grey.shade900,
                               letterSpacing: 0.5,

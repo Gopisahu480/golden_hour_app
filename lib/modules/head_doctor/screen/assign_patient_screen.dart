@@ -276,150 +276,152 @@ class _AssignPatientScreenState extends State<AssignPatientScreen> {
 
 Widget patientDetailsCard(NurseController controller) {
   return Obx(
-    () => Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
-      margin: const EdgeInsets.only(bottom: 24),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Incoming Patient Details',
+    () => Container(
+      margin: const EdgeInsets.only(bottom: 12.0),
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blue.shade100.withOpacity(0.5),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+          ),
+        ],
+        border: Border.all(color: Colors.blue.shade300),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Incoming Patient Details',
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.red.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  controller.severity.value,
                   style: GoogleFonts.poppins(
+                    color: Colors.red,
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    letterSpacing: 1.2,
+                    fontSize: 12,
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 3,
-                    vertical: 4,
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Patient Name
+          Text(
+            'Name: ${controller.name.value}',
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue.shade800,
+            ),
+          ),
+          const SizedBox(height: 8),
+
+          // Age & Gender
+          Row(
+            children: [
+              const SizedBox(width: 8),
+              Text(
+                '${controller.age.value} years • ${controller.gender.value}',
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  color: Colors.grey[700],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Medical Summary
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Text(
+              //   'Medical Summary',
+              //   style: GoogleFonts.poppins(
+              //     fontWeight: FontWeight.bold,
+              //     color: Colors.blueGrey,
+              //   ),
+              // ),
+              // const SizedBox(height: 8),
+
+              // Criticality
+              Row(
+                children: [
+                  const SizedBox(width: 8),
+                  Text(
+                    'Criticality: ',
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.red.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
+                  Text(
                     controller.severity.value,
                     style: GoogleFonts.poppins(
                       color: Colors.red,
                       fontWeight: FontWeight.bold,
-                      fontSize: 12,
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'Name: ${controller.name.value}',
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
+                ],
               ),
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                // Icon(Icons.person_outline, size: 16, color: Colors.grey[600]),
-                // const SizedBox(width: 4),
-                const SizedBox(width: 8),
-                Text(
-                  '${controller.age.value} years • ${controller.gender.value}',
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    color: Colors.grey[700],
+              const SizedBox(height: 4),
+
+              // Injury and ETA
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(width: 8),
+                  Text(
+                    'Injury: ',
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Medical Summary',
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
+                  Flexible(
+                    child: Text(
+                      'Chest, Head',
+                      style: GoogleFonts.poppins(color: Colors.grey[800]),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    // const Icon(
-                    //   Icons.medical_services,
-                    //   size: 16,
-                    //   color: Colors.red,
-                    // ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Criticality: ',
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      controller.severity.value,
-                      style: GoogleFonts.poppins(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
+                  const SizedBox(width: 45),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.access_time,
+                        color: Colors.orange,
+                        size: 16,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    // const Icon(Icons.healing, size: 16, color: Colors.orange),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Injury: ',
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                    ),
-                    Flexible(
-                      child: Text(
-                        'Chest,Head',
-                        // controller.severity.value.isEmpty
-                        //     ? 'Not specified'
-                        //     : controller.severity.value,
-                        style: GoogleFonts.poppins(color: Colors.grey[800]),
+                      const SizedBox(width: 6),
+                      Text(
+                        'ETA : 8 min',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 51.0),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.access_time,
-                            color: Colors.orange,
-                            size: 16,
-                          ), // Clock icon
-                          const SizedBox(
-                            width: 6,
-                          ), // Space between icon and text
-                          Text(
-                            'ETA : 8 min',
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     ),
   );

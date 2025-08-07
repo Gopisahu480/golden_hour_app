@@ -1,3 +1,4 @@
+import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:golden_hour_app/modules/head_doctor/controller/head_doctor_controller.dart';
@@ -72,13 +73,18 @@ class CasesView extends StatelessWidget {
                           );
                           _selectedDate.value = pickedDate;
                         },
-                        icon: const Icon(Icons.calendar_today),
+                        icon: const Icon(
+                          Icons.calendar_today,
+                          color: Colors.grey,
+                        ),
                         label: Obx(
                           () => Text(
                             _selectedDate.value != null
                                 ? _formatDate(_selectedDate.value!)
                                 : 'Select Date',
-                            style: GoogleFonts.poppins(),
+                            style: GoogleFonts.poppins(
+                              color: Colors.grey.shade500,
+                            ),
                           ),
                         ),
                       ),
@@ -205,38 +211,95 @@ class CasesView extends StatelessWidget {
             topRight: Radius.circular(20),
           ),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Case Details',
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Case Timeline',
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            _buildDetailRow('Patient Name', medicalCase.patientName),
-            _buildDetailRow('Case Type', medicalCase.caseType),
-            _buildDetailRow('Status', medicalCase.status),
-            _buildDetailRow(
-              'Admission Date',
-              _formatDate(medicalCase.admissionDate),
-            ),
-            if (medicalCase.dischargeDate != null)
+              const SizedBox(height: 20),
+
+              // Timeline using EasyStepper
+              Column(
+                children: [
+                  EasyStepper(
+                    activeStep: 3,
+                    stepShape: StepShape.circle,
+                    stepRadius: 22, // ⬅️ step size chhota
+                    stepBorderRadius: 15,
+                    borderThickness: 2,
+                    finishedStepBorderColor: Colors.green,
+                    finishedStepTextColor: Colors.green,
+                    finishedStepBackgroundColor: Colors.green,
+                    activeStepIconColor: Colors.white,
+                    activeStepTextColor: Colors.deepOrange,
+                    activeStepBorderColor: Colors.deepOrange,
+                    activeStepBackgroundColor: Colors.deepOrange,
+                    unreachedStepBorderColor: Colors.grey,
+                    unreachedStepTextColor: Colors.grey,
+                    showLoadingAnimation: false,
+
+                    // internalPadding: 22,
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    steps: const [
+                      EasyStep(
+                        icon: Icon(Icons.call),
+                        title: 'Call\n\n11.05AM\n',
+                      ),
+                      EasyStep(
+                        icon: Icon(Icons.local_shipping),
+                        title: 'Dispatched\n\n11.35AM\n',
+                      ),
+                      EasyStep(
+                        icon: Icon(Icons.location_on),
+                        title: 'On Scene\n\n12.05PM\n',
+                      ),
+                      EasyStep(
+                        icon: Icon(Icons.local_hospital),
+                        title: 'Admitted\n\n1.05PM\n',
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 30),
+
+              Text(
+                'Patient Details',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 12),
+              _buildDetailRow('Patient Name', medicalCase.patientName),
+              _buildDetailRow('Case Type', medicalCase.caseType),
+              _buildDetailRow('Status', medicalCase.status),
               _buildDetailRow(
-                'Discharge Date',
-                _formatDate(medicalCase.dischargeDate!),
+                'Admission Date',
+                _formatDate(medicalCase.admissionDate),
               ),
-            const SizedBox(height: 20),
-            Center(
-              child: ElevatedButton(
-                onPressed: () => Get.back(),
-                child: Text('Close', style: GoogleFonts.poppins()),
+              if (medicalCase.dischargeDate != null)
+                _buildDetailRow(
+                  'Discharge Date',
+                  _formatDate(medicalCase.dischargeDate!),
+                ),
+              const SizedBox(height: 20),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () => Get.back(),
+                  child: Text('Close', style: GoogleFonts.poppins()),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

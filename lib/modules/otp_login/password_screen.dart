@@ -111,7 +111,7 @@ class PasswordEntryScreen extends StatelessWidget {
             Text(
               "Enter Password",
               style: GoogleFonts.poppins(
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),

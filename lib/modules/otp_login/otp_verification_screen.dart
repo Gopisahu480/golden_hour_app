@@ -27,9 +27,9 @@ class OTPVerificationScreen extends StatelessWidget {
                 Text(
                   "Enter Verification Code",
                   style: GoogleFonts.poppins(
-                    fontSize: 18,
+                    fontSize: 20,
                     color: Colors.black,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 20),
